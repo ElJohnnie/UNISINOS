@@ -28,7 +28,6 @@ int main() {
     int matrix[MATRIX_SIZE][MATRIX_SIZE];
     int transposed[MATRIX_SIZE][MATRIX_SIZE];
 
-    // Inicializa a matriz com valores de 1 a 100
     for (int i = 0; i < MATRIX_SIZE; i++) {
         for (int j = 0; j < MATRIX_SIZE; j++) {
             matrix[i][j] = i * MATRIX_SIZE + j + 1;
@@ -41,14 +40,12 @@ int main() {
         perror("Erro ao criar processo filho");
         exit(1);
     } else if (pid == 0) {
-        // Código do processo filho
         printf("Processo filho (PID: %d) - Baixando página e procurando palavra\n", getpid());
-        char *args[] = {"/bin/sh", "-c", "curl -s https://www.example.com | egrep -o 'palavra' | wc -l", NULL};
+        char *args[] = {"/bin/sh", "-c", "curl -s https://linguagemc.com.br/criando-e-compilando-programa-em-c-pelo-gcc-ubuntu/ | egrep -o 'imagem' | wc -l", NULL};
         execvp(args[0], args);
         perror("Erro ao executar execvp");
         exit(1);
     } else {
-        // Código do processo pai
         printf("Processo pai (PID: %d) - Calculando transposta da matriz\n", getpid());
         transpose_matrix(matrix, transposed);
         printf("Matriz original:\n");
