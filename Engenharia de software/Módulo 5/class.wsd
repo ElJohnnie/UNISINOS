@@ -1,0 +1,111 @@
+@startuml
+title Class Diagram - Routes and Controllers for E-commerce of Books and E-books
+' ============================
+' Domain Classes
+' ============================
+class Book {
+  - id: int
+  - title: String
+  - author: String
+  - price: double
+  - format: String
+  - category_id: int
+}
+
+class Category {
+  - id: int
+  - name: String
+}
+
+class User {
+  - id: int
+  - name: String
+  - email: String
+  - password: String
+}
+
+class Order {
+  - id: int
+  - user_id: int
+  - date: Date
+  - status: String
+  - delivery_type: String
+}
+
+class Payment {
+  - id: int
+  - order_id: int
+  - method: String
+  - status: String
+}
+
+' Relationships
+Category "1" -- "0..*" Book : contains
+User "1" -- "*" Order : places
+Order "1" -- "*" Book : includes
+Order "1" -- "1" Payment : has
+
+' ============================
+' Controllers (Laravel)
+' ============================
+class HomeController {
+  + index() : Response
+}
+
+class CategoryController {
+  + index() : Response
+  + show(id: int) : Response
+}
+
+class BookController {
+  + show(id: int) : Response
+}
+
+class CartController {
+  + index() : Response
+  + addItem() : Response
+  + updateItem() : Response
+  + removeItem() : Response
+}
+
+class CheckoutController {
+  + index() : Response
+  + processCheckout() : Response
+}
+
+class WishlistController {
+  + index() : Response
+  + addItem() : Response
+  + removeItem() : Response
+}
+
+' ============================
+' Routes (defined in web.php)
+' ============================
+class Routes {
+  + get("/", ...) : Route\n   -> HomeController@index
+  + get("/categories", ...) : Route\n   -> CategoryController@index
+  + get("/categories/{id}", ...) : Route\n   -> CategoryController@show
+  + get("/books/{id}", ...) : Route\n   -> BookController@show
+  + get("/cart", ...) : Route\n   -> CartController@index
+  + post("/cart/add", ...) : Route\n   -> CartController@addItem
+  + post("/cart/update", ...) : Route\n   -> CartController@updateItem
+  + post("/cart/remove", ...) : Route\n   -> CartController@removeItem
+  + get("/checkout", ...) : Route\n   -> CheckoutController@index
+  + post("/checkout/process", ...) : Route\n   -> CheckoutController@processCheckout
+  + get("/wishlist", ...) : Route\n   -> WishlistController@index
+  + post("/wishlist/add", ...) : Route\n   -> WishlistController@addItem
+  + post("/wishlist/remove", ...) : Route\n   -> WishlistController@removeItem
+}
+
+' ============================
+' Relationships between Routes and Controllers
+' ============================
+Routes --> HomeController : directs
+Routes --> CategoryController : directs
+Routes --> BookController : directs
+Routes --> CartController : directs
+Routes --> CheckoutController : directs
+Routes --> WishlistController : directs
+
+@enduml

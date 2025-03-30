@@ -1,0 +1,37 @@
+@startuml
+
+left to right direction
+
+actor Usuario
+actor "Sistema de Pagamento" as SistemaPagamento
+actor "Sistema de Entrega" as SistemaEntrega
+
+rectangle "E commerce de Livros e E-books" {
+Usuario --> (Realizar Compra)
+Usuario --> (Acompanhar Pedido)
+Usuario --> (Criar Lista de Desejos)
+Usuario --> (Escolher Tipo de Entrega)
+Usuario --> (Gerenciar Pagamento)
+
+(Realizar Compra) --> (Selecionar livros e/ou e-books)
+(Realizar Compra) --> (Escolher meio de pagamento)
+(Realizar Compra) --> (Confirmar compra)
+(Realizar Compra) --> (Receber confirmação de pagamento)
+
+(Acompanhar Pedido) --> (Consultar status da compra)
+(Acompanhar Pedido) --> (Consultar status de entrega)
+
+(Criar Lista de Desejos) --> (Adicionar livros e/ou e-books à lista)
+(Criar Lista de Desejos) --> (Remover itens da lista)
+
+(Escolher Tipo de Entrega) --> (Selecionar Correios)
+(Escolher Tipo de Entrega) --> (Selecionar Transportadora)
+
+(Gerenciar Pagamento) --> (Processar pagamento via cartão de crédito)
+(Gerenciar Pagamento) --> (Gerar boleto bancário)
+
+(Gerenciar Pagamento) --> SistemaPagamento
+(Escolher Tipo de Entrega) --> SistemaEntrega
+}
+
+@enduml
