@@ -18,6 +18,14 @@ Esta pasta contém materiais relacionados à modelagem e desenvolvimento de soft
 - Diagramas UML para modelagem de sistemas.
 - Estudos de caso, como o desenvolvimento de um e-commerce de livros e e-books.
 
+### [Projeto de Sistemas Digitais](Projeto%20de%20Sistemas%20Digitais/)
+Esta pasta reúne resumos teóricos, exemplos resolvidos e arquivos de simulação sobre circuitos digitais. Os conteúdos abrangem:
+- Fundamentos de álgebra booleana e portas lógicas.
+- Técnicas de simplificação de funções lógicas (incluindo mapas de Karnaugh).
+- Circuitos combinacionais (somadores, subtratores, multiplexadores, ULA).
+- Circuitos sequenciais (latches, flip-flops, registradores, memórias, contadores e FSM).
+- Exemplos práticos e arquivos para simulação em CircuitVerse e Logisim.
+
 ## Como Navegar
 
 1. Escolha a disciplina de interesse.
