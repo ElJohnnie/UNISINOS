@@ -1,3 +1,4 @@
+
 # Guia Completo de Assembly MIPS
 
 ## 📌 Introdução
@@ -38,8 +39,11 @@ or  $t0, $t1, $t2   # OR bit-a-bit
 slt $t0, $t1, $t2   # $t0 = 1 se $t1 < $t2, senão 0
 ```
 
+---
 
-### 2. Tipo I (Immediate)
+### 2. **Tipo I (Immediate)**
+
+Operações com um valor imediato (constante) ou acesso à memória.
 
 ```asm
 addi $t0, $t1, 10   # $t0 = $t1 + 10
@@ -50,16 +54,23 @@ beq  $t0, $t1, LABEL # branch se igual
 bne  $t0, $t1, LABEL # branch se diferente
 ```
 
-### 3. Tipo J (Jump)
+---
 
+### 3. **Tipo J (Jump)**
+
+Controle de fluxo com saltos diretos.
+
+```asm
 j LABEL           # Salta para LABEL
 jal LABEL         # Salta e salva retorno em $ra
 jr $ra            # Retorna da função (jump register)
+```
 
-### 🧰 Acesso à Memória
+---
 
-- MIPS é load/store architecture: só acessa memória via lw e sw.
+## 🧰 Acesso à Memória
 
+- MIPS é **load/store architecture**: só acessa memória via `lw` e `sw`.
 - Endereços devem ser múltiplos de 4 para alinhamento.
 
 ```asm
@@ -67,8 +78,11 @@ lw  $t0, 0($sp)   # Carrega valor da pilha
 sw  $t1, 4($sp)   # Salva valor na pilha
 ```
 
-### 🔁 Controle de Fluxo
-Condicional
+---
+
+## 🔁 Controle de Fluxo
+
+### Condicional
 
 ```asm
 beq $t0, $t1, IGUAL
@@ -77,11 +91,17 @@ slt $t2, $t0, $t1   # $t2 = 1 se $t0 < $t1
 bne $t2, $zero, MENOR
 ```
 
-Incondicional
+### Incondicional
+
+```asm
 j LOOP
+```
 
+---
 
-### 📦 Funções
+## 📦 Funções
+
+### Chamadas
 
 ```asm
 jal funcao     # chama função
@@ -107,10 +127,11 @@ funcao:
     lw $ra, 4($sp)      # restaura return address
     addi $sp, $sp, 8    # libera espaço da pilha
     jr $ra              # retorna
-
 ```
 
-### 🛠️ Exemplo Completo: Soma de Dois Números
+---
+
+## 🛠️ Exemplo Completo: Soma de Dois Números
 
 ```asm
 .data
@@ -129,22 +150,53 @@ main:
     syscall
 ```
 
+---
 
-### 📎 Referência Rápida de Instruções
+## 🗂️ Syscalls (Chamadas de Sistema)
 
-| Categoria | Instruções 
-|------|-------------|
-| Aritmética | add, sub, mul, div | 
-| Lógica | and, or, nor, slt |          
-| Memória | lw, sw, lb, sb |
-| Imediatos | addi, andi, ori, li | 
-| Controle | beq, bne, j, jr, jal | 
-| Syscalls | syscall | 
+MIPS usa `syscall` para interagir com o sistema (I/O, saída, etc.)
 
+| Código | Ação                   |
+|--------|------------------------|
+| 1      | print int (`$a0`)      |
+| 4      | print string (`$a0`)   |
+| 5      | read int  → `$v0`      |
+| 10     | exit                   |
 
-### 📚 Recursos para Praticar
-- MARS Simulator – Ferramenta oficial.
+### Exemplo: print
 
-- SPIM – Alternativa online ao MARS.
+```asm
+li $v0, 1
+li $a0, 42
+syscall
+```
 
-- Green Card MIPS – Folha de referência rápida.
+---
+
+## 🧪 Boas Práticas
+
+- Salve os registradores `$s*` ao entrar em funções.
+- Use a pilha com `addi $sp, $sp, -X` e `sw`/`lw`.
+- Separe `.data` (dados) e `.text` (código).
+- Comentários com `#` são essenciais para leitura.
+
+---
+
+## 📎 Referência Rápida de Instruções
+
+| Categoria    | Instruções                   |
+|--------------|------------------------------|
+| Aritmética   | `add`, `sub`, `mul`, `div`   |
+| Lógica       | `and`, `or`, `nor`, `slt`    |
+| Memória      | `lw`, `sw`, `lb`, `sb`       |
+| Imediatos    | `addi`, `andi`, `ori`, `li`  |
+| Controle     | `beq`, `bne`, `j`, `jr`, `jal` |
+| Syscalls     | `syscall`                    |
+
+---
+
+## 📚 Recursos para Praticar
+
+- [MARS Simulator](http://courses.missouristate.edu/KenVollmar/mars/) – Ferramenta oficial.
+- [SPIM](https://spimsimulator.github.io/) – Alternativa online ao MARS.
+- [Green Card MIPS](https://inst.eecs.berkeley.edu/~cs61c/fa17/img/mips-green-sheet.pdf) – Folha de referência rápida.
