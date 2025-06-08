@@ -43,6 +43,12 @@ Esta pasta reúne resumos teóricos, exemplos resolvidos e arquivos de simulaç�
   - Familiaridade com diagramas UML.
   - Conhecimentos básicos de modelagem de sistemas.
 
+- **Projeto de Sistemas Digitais**:
+  - Conhecimentos básicos de lógica booleana.
+  - Noções de álgebra booleana e portas lógicas.
+  - Interesse em simulação de circuitos digitais (uso de ferramentas como CircuitVerse ou Logisim).
+  - Raciocínio lógico e matemática básica.
+
 ## Licença
 
 Este repositório está licenciado sob a [MIT License](Análise%20e%20Aplicação%20de%20Sistemas%20Operacionais/LICENSE). Sinta-se à vontade para usar, modificar e distribuir os materiais, desde que os devidos créditos sejam mantidos.
